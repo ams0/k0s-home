@@ -1,0 +1,61 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: home
+spec:
+  hosts:
+  - ssh:
+      address: cloud
+      user: alessandro
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: controller+worker
+  - ssh:
+      address: nuc1
+      user: alessandro
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  - ssh:
+      address: nuc2
+      user: alessandro
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  - ssh:
+      address: box
+      user: alessandro
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  - ssh:
+      address: jetson
+      user: alessandro
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  - ssh:
+      address: hp01
+      user: ubuntu
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  - ssh:
+      address: hp02
+      user: ubuntu
+      port: 22
+      keyPath: /volume1/homes/root/.ssh/id_rsa
+    role: worker
+  k0s:
+    version: 0.11.0
+    config:
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: home
+      spec:
+        api:
+          sans:
+          - k0s.stackmasters.com
+        network:
+          provide: calico
