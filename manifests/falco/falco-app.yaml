@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: falco
     server: https://kubernetes.default.svc
-  project: infra
+  project: default
   source:
     path: falco
     targetRevision: HEAD

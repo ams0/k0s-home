@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: csi-drivers
     server: https://kubernetes.default.svc
-  project: infra
+  project: default
   source:
     path: charts/latest/blob-csi-driver
     targetRevision: HEAD
