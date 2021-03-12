@@ -3,15 +3,18 @@
 Install an home cluster with k0s(ctl)
 
 ```bash
-k0sctl apply -c cluster.yml
+k0sctl apply -c cluster.yaml
 
-mkdir ~/.kube/ ; k0sctl kubeconfig -c cluster.yml > $HOME/.kube/config
-kubectl cluster-info
+mkdir -p ~/.kube/ && k0sctl kubeconfig -c cluster.yaml > $HOME/.kube/config
+kubectl cluster-info ; kubectl get nodes
 ```
 
 Install the ArgoCD root app and point it to the Github Repo:
 
 ```bash
+kubectl create ns argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/ams0/argocd-apps/main/install.yaml
+kubectl apply -f manifests/root-app.yaml
 
 ```
 
