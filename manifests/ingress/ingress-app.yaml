@@ -12,8 +12,10 @@ spec:
     helm:
       values: |
         controller:
+          nodeSelector:
+            kubernetes.io/hostname: cloud
           kind: Deployment
-          replicaCount: 2	
+          replicaCount: 1	
           service:
             type: "NodePort"
             nodePorts:
