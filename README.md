@@ -18,7 +18,7 @@ kubectl apply -f manifests/root-app.yaml
 
 ```
 
-If some nodes don't come, try to hard clean them:
+If some nodes don't come up, try to hard clean them:
 
 ```
 sudo systemctl stop containerd
@@ -41,3 +41,8 @@ For the time being, create a secret for DD (using an env var for key); the helm 
 kubectl create secret generic datadog-secret --from-literal api-key=${DATADOG_APIKEY} --namespace="datadog"
 ```
 
+To quickly refresh the cluster:
+
+```bash
+k0sctl reset -f -c cluster.yaml ; k0sctl apply -c cluster.yaml; mkdir -p ~/.kube/ && k0sctl kubeconfig -c cluster.yaml > $HOME/.kube/config ;  kubectl cordon jetson; kubectl create ns argocd; kubectl apply -n argocd -f https://raw.githubusercontent.com/ams0/argocd-apps/main/install.yaml
+```
