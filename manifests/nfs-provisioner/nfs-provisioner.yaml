@@ -11,6 +11,9 @@ spec:
   source:
     helm:
       values: |
+        storageClass:
+          defaultClass: true
+          accessModes: ReadWriteMany
         nfs:
           server: "nas"
           mountOptions:
