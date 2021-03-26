@@ -1,0 +1,14 @@
+apiVersion: "networking.k8s.io/v1beta1"
+kind: Ingress
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec: 
+  rules:
+    - http:
+        paths:
+          - path:
+            backend:
+              serviceName: argocd-server
+              servicePort: http
+      host: argocd.stackmasters.com
